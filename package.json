@@ -1,0 +1,58 @@
+{
+  "name": "CodeBase",
+  "version": "0.0.1",
+  "description": "A boilerplate for a react-native app",
+  "author": "Tien Tran <tientran0019@gmail.com>",
+  "keywords": [
+    "boilerplate",
+    "react-native",
+    "redux",
+    "redux-saga",
+    "redux-devtools-extension"
+  ],
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "ios": "react-native run-ios",
+    "android": "react-native run-android",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "16.8.6",
+    "react-native": "0.60.5",
+    "react-native-dotenv": "^0.2.0",
+    "react-native-elements": "^1.2.0",
+    "react-navigation": "^4.0.5",
+    "react-navigation-stack": "^1.7.3",
+    "react-navigation-tabs": "^2.5.2",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-immutable": "^5.0.0",
+    "redux-saga": "^1.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-import-resolver-babel-module": "^5.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.8.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
