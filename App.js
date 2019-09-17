@@ -1,115 +1,121 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
 
-import React from 'react';
-import {
-	SafeAreaView,
-	StyleSheet,
-	ScrollView,
-	View,
-	Text,
-	StatusBar,
-} from 'react-native';
+// import { Asset } from 'expo-asset';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { ThemeProvider } from 'react-native-elements';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import {
-	Header,
-	LearnMoreLinks,
-	Colors,
-	DebugInstructions,
-	ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import store from 'src/redux/store';
 
+import AppNavigator from 'src/navigation/AppNavigator';
+
+const theme = {
+	colors: {
+		primary: '#019fe6',
+		secondary: '#fff',
+	},
+	Button: {
+		buttonStyle: {
+			borderRadius: 30,
+		},
+	},
+	Input: {
+		containerStyle: {
+			width: '100%',
+			borderBottomWidth: 0,
+			marginBottom: 20,
+		},
+		inputStyle: {
+			width: '100%',
+			borderBottomWidth: 0,
+			color: '#98a2b0',
+			paddingRight: 15,
+			paddingLeft: 15,
+			borderRadius: 30,
+			backgroundColor: '#e7ebed',
+			marginLeft: -10,
+			marginRight: -10,
+		},
+		inputContainerStyle: {
+			borderRadius: 30,
+			backgroundColor: '#e7ebed',
+			// color: '#636e86',
+			width: '100%',
+			borderBottomWidth: 0,
+		},
+		labelStyle: {
+			marginLeft: -10,
+			marginRight: -10,
+			color: '#636e85',
+			marginBottom: 7,
+		},
+		errorStyle: {
+			marginLeft: -10,
+			marginRight: -10,
+		},
+	},
+};
+
+function handleLoadingError(error) {
+	// In this case, you might want to report the error to your error reporting
+	// service, for example Sentry
+	console.warn(error);
+}
+
+function handleFinishLoading(setLoadingComplete) {
+	setLoadingComplete(true);
+}
 
 const styles = StyleSheet.create({
-	scrollView: {
-		backgroundColor: Colors.lighter,
-	},
-	engine: {
-		position: 'absolute',
-		right: 0,
-	},
-	body: {
-		backgroundColor: Colors.white,
-	},
-	sectionContainer: {
-		marginTop: 32,
-		paddingHorizontal: 24,
-	},
-	sectionTitle: {
-		fontSize: 24,
-		fontWeight: '600',
-		color: Colors.black,
-	},
-	sectionDescription: {
-		marginTop: 8,
-		fontSize: 18,
-		fontWeight: '400',
-		color: Colors.dark,
-	},
-	highlight: {
-		fontWeight: '700',
-	},
-	footer: {
-		color: Colors.dark,
-		fontSize: 12,
-		fontWeight: '600',
-		padding: 4,
-		paddingRight: 12,
-		textAlign: 'right',
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
 	},
 });
 
-const App = () => {
+async function loadResourcesAsync() {
+	await Promise.all([
+		// Asset.loadAsync([
+		// 	require('./src/assets/images/robot-dev.png'),
+		// 	require('./src/assets/images/robot-prod.png'),
+		// ]),
+	]);
+}
+
+export default function App(props) {
+	const [isLoadingComplete, setLoadingComplete] = useState(false);
+
+	Ionicons.loadFont();
+	FontAwesome.loadFont();
+
+	// if (!isLoadingComplete && !props.skipLoadingScreen) {
+	// 	return (
+	// 		<AppLoading
+	// 			startAsync={loadResourcesAsync}
+	// 			onError={handleLoadingError}
+	// 			onFinish={() => handleFinishLoading(setLoadingComplete)}
+	// 		/>
+	// 	);
+	// }
 	return (
-		<>
-			<StatusBar barStyle="dark-content" />
-			<SafeAreaView>
-				<ScrollView
-					contentInsetAdjustmentBehavior="automatic"
-					style={styles.scrollView}
-				>
-					<Header />
-					{global.HermesInternal == null ? null : (
-						<View style={styles.engine}>
-							<Text style={styles.footer}>Engine: Hermes</Text>
-						</View>
-					)}
-					<View style={styles.body}>
-						<View style={styles.sectionContainer}>
-							<Text style={styles.sectionTitle}>Step One</Text>
-							<Text style={styles.sectionDescription}>
-								Edit <Text style={styles.highlight}>App.js</Text> to change this screen and then come back to see your edits.
-							</Text>
-						</View>
-						<View style={styles.sectionContainer}>
-							<Text style={styles.sectionTitle}>See Your Changes</Text>
-							<Text style={styles.sectionDescription}>
-								<ReloadInstructions />
-							</Text>
-						</View>
-						<View style={styles.sectionContainer}>
-							<Text style={styles.sectionTitle}>Debug</Text>
-							<Text style={styles.sectionDescription}>
-								<DebugInstructions />
-							</Text>
-						</View>
-						<View style={styles.sectionContainer}>
-							<Text style={styles.sectionTitle}>Learn More</Text>
-							<Text style={styles.sectionDescription}>
-								Read the docs to discover what to do next:
-							</Text>
-						</View>
-						<LearnMoreLinks />
-					</View>
-				</ScrollView>
-			</SafeAreaView>
-		</>
+		<Provider store={store}>
+			<View style={styles.container}>
+				{Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+				<ThemeProvider theme={theme}>
+					<AppNavigator />
+				</ThemeProvider>
+			</View>
+		</Provider>
 	);
+}
+
+App.propTypes = {
+	skipLoadingScreen: PropTypes.bool,
 };
 
-export default App;
+App.defaultProps = {
+	skipLoadingScreen: false,
+};
