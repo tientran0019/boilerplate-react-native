@@ -57,7 +57,7 @@ const composeMiddleware = !__DEV__ ?
 		// Options: https://github.com/jhen0409/react-native-debugger#options
 	})(compose(
 		applyMiddleware(sagaMiddleware),
-		// applyMiddleware(logger),
+		applyMiddleware(logger),
 	));
 
 const store = createStore(

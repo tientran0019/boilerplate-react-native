@@ -97,7 +97,7 @@ export default function App(props) {
 	useEffect(() => {
 		Ionicons.loadFont();
 		FontAwesome.loadFont();
-	}, []);
+	});
 
 	// if (!isLoadingComplete && !props.skipLoadingScreen) {
 	// 	return (
