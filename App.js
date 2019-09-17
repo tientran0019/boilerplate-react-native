@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+/* --------------------------------------------------------
+* Author Trần Đức Tiến
+* Email tientran0019@gmail.com
+* Phone 0972970075
+*
+* Created: 2019-09-17 17:26:32
+*------------------------------------------------------- */
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 
-// import { Asset } from 'expo-asset';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -88,8 +94,10 @@ async function loadResourcesAsync() {
 export default function App(props) {
 	const [isLoadingComplete, setLoadingComplete] = useState(false);
 
-	Ionicons.loadFont();
-	FontAwesome.loadFont();
+	useEffect(() => {
+		Ionicons.loadFont();
+		FontAwesome.loadFont();
+	}, []);
 
 	// if (!isLoadingComplete && !props.skipLoadingScreen) {
 	// 	return (

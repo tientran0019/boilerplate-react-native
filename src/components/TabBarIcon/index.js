@@ -1,4 +1,11 @@
 /* eslint-disable react/prop-types */
+/* --------------------------------------------------------
+* Author Trần Đức Tiến
+* Email tientran0019@gmail.com
+* Phone 0972970075
+*
+* Created: 2019-09-17 17:20:50
+*------------------------------------------------------- */
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 

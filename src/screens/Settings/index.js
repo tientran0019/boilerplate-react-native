@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 
 const SettingsScreen = (props) => {
-	const {  } = props;
+	// const {  } = props;
 
 	return (
 		<View

@@ -13,9 +13,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import TabBarIcon from 'src/components/TabBarIcon';
 
-import HomeScreen from 'src/screens/HomeScreen';
-import LinksScreen from 'src/screens/LinksScreen';
-import SettingsScreen from 'src/screens/SettingsScreen';
+import HomeScreen from 'src/screens/Home';
+import LinksScreen from 'src/screens/Links';
+import SettingsScreen from 'src/screens/Settings';
 import ProfileScreen from 'src/screens/Profile';
 
 const config = Platform.select({
