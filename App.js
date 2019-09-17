@@ -95,6 +95,7 @@ export default function App(props) {
 	const [isLoadingComplete, setLoadingComplete] = useState(false);
 
 	useEffect(() => {
+		console.disableYellowBox = true;
 		Ionicons.loadFont();
 		FontAwesome.loadFont();
 	});
